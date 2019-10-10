@@ -1,5 +1,5 @@
 package com.qiuxuewei;
-
+/// 接口
 public interface List <E> {
 	static final int ELEMENT_NOT_FOUND = -1;
 	 void clear();

@@ -1,5 +1,6 @@
 package com.qiuxuewei;
 
+/// 抽象类 abstract，无法初始化仅用于代码抽取
 public abstract class AbstractList <E> implements List<E> {
 	protected int size;
 	@Override
@@ -38,7 +39,7 @@ public abstract class AbstractList <E> implements List<E> {
 		}
 	}
 	
-	protected void rangCheckForAdd(int index)
+	protected void rangeCheckForAdd(int index)
 	{
 		if (index < 0 || index > size) {
 			outOfBounds(index);

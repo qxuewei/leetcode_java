@@ -5,6 +5,7 @@ public class ShrinkageArrayList<E> extends AbstractList<E> {
 	private E[] elements;
 	private static final int DEFAULT_CAPACITY = 10;
 	
+	@SuppressWarnings("unchecked")
 	public ShrinkageArrayList(int capacity)
 	{
 		capacity = (capacity < DEFAULT_CAPACITY) ? DEFAULT_CAPACITY : capacity;
@@ -16,6 +17,7 @@ public class ShrinkageArrayList<E> extends AbstractList<E> {
 		this(DEFAULT_CAPACITY);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
 		for (int i = 0; i < size; i++) {
@@ -47,7 +49,7 @@ public class ShrinkageArrayList<E> extends AbstractList<E> {
 	@Override
 	public void add(int index, E element)
 	{
-		rangCheckForAdd(index);	
+		rangeCheckForAdd(index);
 		ensureCapacity(size + 1);
 		
 		for (int i = size; i > index; i--) {
@@ -95,6 +97,7 @@ public class ShrinkageArrayList<E> extends AbstractList<E> {
 		
 		// 新容量为旧容量的2倍
 		// int newCapacity = oldCapacity << 1;
+		@SuppressWarnings("unchecked")
 		E[] newElements = (E[]) new Object[newCapacity];
 		for (int i = 0; i < size; i++) {
 			newElements[i] = elements[i];
@@ -110,6 +113,7 @@ public class ShrinkageArrayList<E> extends AbstractList<E> {
 		int newCapacity = oldCapacity >> 1;
 		if (size > newCapacity || oldCapacity <= DEFAULT_CAPACITY) return;
 		
+		@SuppressWarnings("unchecked")
 		E[] newElements = (E[]) new Object[newCapacity];
 		for (int i = 0; i < size; i++) {
 			newElements[i] = elements[i];

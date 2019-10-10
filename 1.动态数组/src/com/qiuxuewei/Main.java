@@ -37,7 +37,7 @@ public class Main {
 //		System.out.println("fib1 : " + fib1(n));
 //		System.out.println("fib2 : " + fib2(n));
 		
-		test();
+//		test();
 	}
 	
 	static void test() {

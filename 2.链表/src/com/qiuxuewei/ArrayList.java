@@ -44,7 +44,7 @@ public class ArrayList <E> extends AbstractList<E> {
 	@Override
 	public void add(int index, E element) 
 	{
-		rangCheckForAdd(index);
+		rangeCheckForAdd(index);
 		ensureCapacity(size + 1);
 		for (int i = size; i < index; i++) {
 			elements[i] = elements[i - 1];
