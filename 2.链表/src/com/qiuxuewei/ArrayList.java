@@ -46,7 +46,8 @@ public class ArrayList <E> extends AbstractList<E> {
 	{
 		rangeCheckForAdd(index);
 		ensureCapacity(size + 1);
-		for (int i = size; i < index; i++) {
+		
+		for (int i = size; i > index; i--) {
 			elements[i] = elements[i - 1];
 		}
 		elements[index] = element;
@@ -103,7 +104,7 @@ public class ArrayList <E> extends AbstractList<E> {
 	@Override
 	public String toString() {
 		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append("size = ").append(size).append(",[");
+		stringBuffer.append("ArrayList : size = ").append(size).append(",[");
 		for (int i = 0; i < size; i++) {
 			if (i != 0) {
 				stringBuffer.append(", ");

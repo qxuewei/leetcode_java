@@ -33,6 +33,23 @@ public class LinkedList<E> extends AbstractList<E> {
 		public void setNext(Node<E> next) {
 			this.next = next;
 		}
+		
+		@Override
+		public String toString() {
+			StringBuffer sBuffer = new StringBuffer();
+			if (prev != null) {
+				sBuffer.append(prev.element);
+			} else {
+				sBuffer.append("null");
+			}
+			sBuffer.append("_").append(element).append("_");
+			if (next != null) {
+				sBuffer.append(next);
+			} else {
+				sBuffer.append("null");
+			}
+			return sBuffer.toString();
+		}
 	}
 
 	@Override
@@ -62,6 +79,7 @@ public class LinkedList<E> extends AbstractList<E> {
 	public void add(int index, E element) 
 	{
 		rangeCheckForAdd(index);
+		
 		if (index == size) {
 			Node<E> oldNode = last;
 			last = new Node<E>(oldNode, element, null);
@@ -164,6 +182,23 @@ public class LinkedList<E> extends AbstractList<E> {
 
 	public void setLast(Node<E> last) {
 		this.last = last;
+	}
+	
+	@Override
+	public String toString()
+	{
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append("LinkedList: size = ").append(size).append(",[");
+		Node<E> node = first;
+		for (int i = 0; i < size; i++) {
+			if (i != 0) {
+				stringBuffer.append(", ");
+			}
+			stringBuffer.append(node.element);
+			node = node.next;
+		}
+		stringBuffer.append("]");
+		return stringBuffer.toString();
 	}
 
 }
