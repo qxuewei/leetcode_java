@@ -34,7 +34,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		test206();
+		System.out.print("result：" + 5 / 2);
 	}
 
 }
