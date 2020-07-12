@@ -56,4 +56,12 @@ public class _509_斐波那契数 {
 		return second;
 	}
 
+	public static void main(String[] args) {
+
+	}
+
 }
+
+
+
+

@@ -37,9 +37,9 @@ public class _1_两数之和 {
 	{
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		for (int i = 0; i < nums.length; i++) {
-			if (condition) {
-				
-			}
+//			if (condition) {
+//				
+//			}
 			map.put(target - nums[i], i);
 		}
 		throw new IllegalArgumentException("No two sum solution");
