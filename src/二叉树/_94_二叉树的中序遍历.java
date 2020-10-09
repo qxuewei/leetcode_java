@@ -29,21 +29,21 @@ public class _94_二叉树的中序遍历 {
      */
 
     // 递归
-//    public List<Integer> inorderTraversal(TreeNode root) {
-//        List<Integer> list = new ArrayList<Integer>();
-//        inorder(root,list);
-//        return list;
-//    }
-//    public void inorder(TreeNode node, List<Integer> list) {
-//        if (node == null) return;
-//        inorder(node.left,list);
-//        list.add(node.val);
-//        inorder(node.right,list);
-//    }
+    public List<Integer> inorderTraversal1(TreeNode root) {
+        List<Integer> list = new ArrayList<Integer>();
+        inorder(root,list);
+        return list;
+    }
+    public void inorder(TreeNode node, List<Integer> list) {
+        if (node == null) return;
+        inorder(node.left,list);
+        list.add(node.val);
+        inorder(node.right,list);
+    }
 
 
     // 迭代
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> list = new ArrayList<Integer>();
         Deque<TreeNode> stack = new LinkedList<TreeNode>();
         while (root != null || !stack.isEmpty()) {
@@ -56,5 +56,25 @@ public class _94_二叉树的中序遍历 {
             root = node.right;
         }
         return list;
+    }
+
+    // MJ
+    public List<Integer> inorderTraversal3(TreeNode root) {
+        LinkedList<Integer> list = new LinkedList<>();
+        if (root == null) return list;
+        TreeNode node = root;
+        Stack<TreeNode> stack = new Stack<>();
+        while (true) {
+            if (node != null) {
+                stack.push(node);
+                node = node.left;
+            } else if (stack.isEmpty()){
+                return list;
+            } else {
+                node = stack.pop();
+                list.add(node.val);
+                node = node.right;
+            }
+        }
     }
 }

@@ -1,9 +1,6 @@
 package 二叉树;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author 邱学伟
@@ -31,28 +28,28 @@ public class _145_二叉树的后序遍历 {
      */
 
     // 递归
-//    public List<Integer> postorderTraversal(TreeNode root) {
-//        List<Integer> list = new ArrayList<>();
-//        postorder(root, list);
-//        return list;
-//    }
-//    public void postorder(TreeNode root, List<Integer> list) {
-//        if (root == null) return;
-//        postorder(root.left, list);
-//        postorder(root.right, list);
-//        list.add(root.val);
-//    }
+    public List<Integer> postorderTraversal1(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        postorder(root, list);
+        return list;
+    }
+    public void postorder(TreeNode root, List<Integer> list) {
+        if (root == null) return;
+        postorder(root.left, list);
+        postorder(root.right, list);
+        list.add(root.val);
+    }
 
     // 迭代
-    public List<Integer> postorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal2(TreeNode root) {
         LinkedList<Integer> output = new LinkedList<>();
         if (root == null) {
             return output;
         }
-        LinkedList<TreeNode> stack = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
         stack.add(root);
         while (!stack.isEmpty()) {
-            TreeNode node = stack.pollLast();
+            TreeNode node = stack.pop();
             output.addFirst(node.val);
             if (node.left != null) {
                 stack.add(node.left);
@@ -63,5 +60,4 @@ public class _145_二叉树的后序遍历 {
         }
         return output;
     }
-
 }
