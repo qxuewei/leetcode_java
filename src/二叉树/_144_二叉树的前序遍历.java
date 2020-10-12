@@ -3,6 +3,7 @@ package 二叉树;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author 邱学伟
@@ -30,22 +31,22 @@ public class _144_二叉树的前序遍历 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
-//    private List<Integer> list = new ArrayList<Integer>();
-//
-//    // 递归
-//    public List<Integer> preorderTraversal(TreeNode root) {
-//        preorderTraversalMethod(root);
-//        return list;
-//    }
-//    public void preorderTraversalMethod(TreeNode root) {
-//        if (root == null) return;
-//        list.add(root.val);
-//        preorderTraversalMethod(root.left);
-//        preorderTraversalMethod(root.right);
-//    }
+    private List<Integer> list = new ArrayList<Integer>();
+
+    // 递归
+    public List<Integer> preorderTraversal1(TreeNode root) {
+        preorderTraversalMethod(root);
+        return list;
+    }
+    public void preorderTraversalMethod(TreeNode root) {
+        if (root == null) return;
+        list.add(root.val);
+        preorderTraversalMethod(root.left);
+        preorderTraversalMethod(root.right);
+    }
 
     // 迭代
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> preorderTraversal2(TreeNode root) {
         LinkedList<Integer> output = new LinkedList<Integer>();
         if (root == null) {
             return output;
@@ -63,5 +64,26 @@ public class _144_二叉树的前序遍历 {
             }
         }
         return output;
+    }
+
+    /// MJ
+    public List<Integer> preorderTraversal3(TreeNode root) {
+        LinkedList<Integer> list = new LinkedList<Integer>();
+        if (root == null) return list;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = root;
+        while (true) {
+            if (node != null) {
+                list.add(node.val);
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+                node = node.left;
+            } else if (stack.isEmpty()) {
+                return list;
+            } else {
+                node = stack.pop();
+            }
+        }
     }
 }
