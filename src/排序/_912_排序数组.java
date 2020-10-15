@@ -61,6 +61,21 @@ public class _912_排序数组 {
         return nums;
     }
 
+    // 冒泡排序3
+    public int[] sortArray3(int[] nums) {
+        for (int end = nums.length - 1; end > 0 ; end--) {
+            int endIndex = end;
+            for (int start = 1; start <= end; start++) {
+                if (cmp(nums[start - 1], nums[start]) > 0) {
+                    swap(nums,start - 1, start);
+                    endIndex = start;
+                }
+            }
+        }
+        return nums;
+    }
+
+
     private int cmp(int v1, int v2) {
         return v1 - v2;
     }
