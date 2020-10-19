@@ -64,22 +64,21 @@ public class _141_环形链表 {
 //		}
 //		return false;
 //	}
-	
-	public boolean hasCycle(ListNode head) 
-	{
-		if (head == null || head.next == null) 
+
+	public boolean hasCycle(ListNode head) {
+		if (head == null || head.next == null)
 			return false;
-		ListNode slowListNode = head;
-		ListNode fastListNode = head.next;
-		while (fastListNode != null && fastListNode.next != null) {
-			slowListNode = slowListNode.next;
-			fastListNode = fastListNode.next.next;
-			if (slowListNode == fastListNode) 
+		ListNode s = head;
+		ListNode f = head.next;
+		while (f != null && f.next != null) {
+			if (s == f)
 				return true;
+			s = s.next;
+			f = f.next.next;
 		}
 		return false;
 	}
-	
+
 	public boolean hasCycle2(ListNode head) 
 	{
 		if (head == null || head.next == null) 
