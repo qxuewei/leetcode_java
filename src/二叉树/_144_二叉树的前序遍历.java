@@ -47,23 +47,21 @@ public class _144_二叉树的前序遍历 {
 
     // 迭代
     public List<Integer> preorderTraversal2(TreeNode root) {
-        LinkedList<Integer> output = new LinkedList<Integer>();
-        if (root == null) {
-            return output;
-        }
-        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
-        stack.add(root);
+        LinkedList<Integer> list = new LinkedList<>();
+        if (root == null) return list;
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
         while (!stack.isEmpty()) {
-            TreeNode last = stack.pollLast();
-            output.add(last.val);
-            if (last.right != null) {
-                stack.add(last.right);
+            TreeNode treeNode = stack.poll();
+            list.add(treeNode.val);
+            if (treeNode.right != null) {
+                stack.push(treeNode.right);
             }
-            if (last.left != null) {
-                stack.add(last.left);
+            if (treeNode.left != null) {
+                stack.push(treeNode.left);
             }
         }
-        return output;
+        return list;
     }
 
     /// MJ
@@ -86,4 +84,7 @@ public class _144_二叉树的前序遍历 {
             }
         }
     }
+
+
+
 }
