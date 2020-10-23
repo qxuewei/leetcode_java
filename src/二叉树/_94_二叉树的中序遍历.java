@@ -45,7 +45,7 @@ public class _94_二叉树的中序遍历 {
     // 迭代
     public List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> list = new ArrayList<Integer>();
-        Deque<TreeNode> stack = new LinkedList<TreeNode>();
+        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
         while (root != null || !stack.isEmpty()) {
             while (root != null) {
                 stack.push(root);
