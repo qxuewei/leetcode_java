@@ -60,4 +60,50 @@ public class _145_二叉树的后序遍历 {
         }
         return output;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public List<Integer> postorderTraversal3(TreeNode root) {
+        LinkedList<Integer> list = new LinkedList<>();
+        if (root == null) return list;
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            list.addFirst(node.val);
+            
+
+        }
+        return list;
+    }
+
+
+
+
+
+
 }

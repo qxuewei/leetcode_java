@@ -3,6 +3,7 @@ package 二叉树;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class _589_N叉树的前序遍历 {
     /**
@@ -14,16 +15,37 @@ public class _589_N叉树的前序遍历 {
      * 返回其前序遍历: [1,3,5,6,2,4]。
      */
 
+    // 递归
     public List<Integer> preorder(Node root) {
-        List<Integer> list = new ArrayList<Integer>();
-        if (root == null) return list;
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        preorder(root,list);
+        return list;
+    }
+    public void preorder(Node root, ArrayList<Integer> list) {
+        if (root == null) return;
+        list.add(root.val);
+        for (int i = 0; i < root.children.size(); i++) {
+            Node child = root.children.get(i);
+            preorder(child,list);
+        }
+    }
 
+
+    // 迭代
+    public List<Integer> preorder2(Node root) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        if (root == null) return list;
+        Stack<Node> stack = new Stack();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            list.add(node.val);
+            for (int i = node.children.size() - 1; i >= 0 ; i--) {
+                Node child = node.children.get(i);
+                stack.push(child);
+            }
+        }
         return list;
     }
 
-    public void preorder(Node root, ArrayList<Integer> list) {
-        if (list == null) return;
-        list.add(root.val);
-
-    }
 }
