@@ -2,6 +2,8 @@ package 剑指Offer;
 
 import 链表.ListNode;
 
+import java.util.Stack;
+
 public class _06_从尾到头打印链表 {
     /**
      * 输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
@@ -24,38 +26,21 @@ public class _06_从尾到头打印链表 {
      */
 
     public int[] reversePrint(ListNode head) {
-        int size = 0;
-        ListNode reverse = reverse(head,size);
-        ListNode node = reverse;
+        Stack<Integer> stack = new Stack();
+        ListNode tmp = head;
+        while (tmp != null) {
+            stack.push(tmp.val);
+            tmp = tmp.next;
+        }
+
+        int size = stack.size();
+        int [] array = new int[size];
         int idx = 0;
-        int[] array = new int[size];
-        while (node != null) {
-            array[idx++] = node.val;
-            node = node.next;
+        while (!stack.isEmpty()) {
+            Integer pop = stack.pop();
+            array[idx++] = pop;
         }
         return array;
     }
 
-//    public ListNode reverse(ListNode head, int size) {
-//        size ++;
-//        if (head == null || head.next == null) return head;
-//        ListNode newHead = reverse(head.next,size);
-//        head.next.next = head;
-//        head.next = null;
-//        return newHead;
-//    }
-
-    public ListNode reverse(ListNode head, int size) {
-        if (head == null || head.next == null) return head;
-        ListNode newHead = null;
-        ListNode node = head;
-        while (node != null) {
-            ListNode tmp = node.next;
-            node.next = newHead;
-            newHead = node;
-            node = tmp;
-            size ++;
-        }
-        return newHead;
-    }
 }
