@@ -1,5 +1,6 @@
 package 剑指Offer;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +37,33 @@ public class _38_字符串的排列 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
+    ArrayList<String> res = new ArrayList<>();
+    char[] c;
     public String[] permutation(String s) {
-        return null;
+        c = s.toCharArray();
+        dfs(0);
+        return res.toArray(new String[res.size()]);
+    }
+
+    private void dfs(int index) {
+        if (index == c.length - 1) {
+            String s = String.valueOf(c);
+            res.add(s);
+            return;
+        }
+        HashSet<Character> set = new HashSet<>();
+        for (int i = index; i < c.length; i++) {
+            if (set.contains(c[i])) continue;
+            set.add(c[i]);
+            swap(i,index);
+            dfs(index+1);
+            swap(i,index);
+        }
+    }
+
+    private void swap(int index1, int index2) {
+        char temp = c[index1];
+        c[index1] = c[index2];
+        c[index2] = temp;
     }
 }
