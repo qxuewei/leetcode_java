@@ -30,49 +30,54 @@ public class _51_数组中的逆序对 {
     public int reversePairs(int[] nums) {
         int length = nums.length;
         if (length < 2) return 0;
-        int[] copy = new int[length];
-        for (int i = 0; i < length; i++) {
-            copy[i] = nums[i];
-        }
+//        int[] copy = new int[length];
+//        for (int i = 0; i < length; i++) {
+//            copy[i] = nums[i];
+//        }
         int[] temp = new int[length];
-        return reversePairs(copy, 0, length-1, temp);
+        return reversePairs(nums, 0, length-1, temp);
     }
 
     private int reversePairs(int[] copy, int begin, int end, int[] temp) {
         if (begin == end) return 0;
         int mid = (begin + end) / 2;
-        int left = reversePairs(copy, 0,mid,temp);
+        int left = reversePairs(copy, begin,mid,temp);
         int right = reversePairs(copy, mid+1,end,temp);
         int merge = merge(copy,begin,mid,end,temp);
         return left + right + merge;
     }
 
     private int merge(int[] copy, int begin, int mid, int end, int[] temp) {
-        for (int i = begin; i <= mid; i++) {
+        for (int i = begin; i <= end; i++) {
             temp[i] = copy[i];
         }
-
         int res = 0;
-        int l = begin, r = mid+1, x = begin;
+        int l = begin, r = mid+1, x = 0;
         while (l <= mid && r <= end) {
             if (temp[l] >= temp[r]) {
-                copy[x++] = copy[r++];
-                res++;
+                copy[x++] = temp[r++];
+                res+= (mid - l + 1);
             } else {
                 copy[x++] = temp[l++];
             }
         }
-
         if (l <= mid) {
             copy[x++] = temp[l++];
-            res++;
+            res+=(mid - l + 1);;
         }
-
         if (r <= end) {
-            copy[x++] = copy[l++];
+            copy[x++] = temp[l++];
         }
-
         return res;
+    }
+
+    public static void main(String[] args) {
+        int[] test = new int[]{1,10,2,4,5};
+        int res = new _51_数组中的逆序对().reversePairs(test);
+        System.out.println("res=" + res);
+        for (int i : test) {
+            System.out.print(i + ",");
+        }
     }
 
 
