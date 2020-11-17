@@ -52,27 +52,26 @@ public class _51_数组中的逆序对 {
             temp[i] = copy[i];
         }
         int res = 0;
-        int l = begin, r = mid+1, x = 0;
+        int l = begin, r = mid+1, x = begin;
         while (l <= mid && r <= end) {
-            if (temp[l] >= temp[r]) {
-                copy[x++] = temp[r++];
-                res+= (mid - l + 1);
-            } else {
+            if (temp[l] <= temp[r]) {
                 copy[x++] = temp[l++];
+            } else {
+                copy[x++] = temp[r++];
+                res += (mid - l + 1);
             }
         }
-        if (l <= mid) {
+        while (l <= mid) {
             copy[x++] = temp[l++];
-            res+=(mid - l + 1);;
         }
-        if (r <= end) {
-            copy[x++] = temp[l++];
+        while (r <= end) {
+            copy[x++] = temp[r++];
         }
         return res;
     }
 
     public static void main(String[] args) {
-        int[] test = new int[]{1,10,2,4,5};
+        int[] test = new int[]{5,4,3,2,1,100,200,6,28,66,29};
         int res = new _51_数组中的逆序对().reversePairs(test);
         System.out.println("res=" + res);
         for (int i : test) {
