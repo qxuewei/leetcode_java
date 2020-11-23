@@ -39,10 +39,17 @@ public class _62_圆圈中最后剩下的数字 {
      */
 
     // 递归
+//    public int lastRemaining(int n, int m) {
+//        if (n == 1) return 0;
+//        return (m + lastRemaining(n-1,m)) % n;
+//    }
+
+    // 数学
     public int lastRemaining(int n, int m) {
-        if (n == 1) return 0;
-        return (m + lastRemaining(n-1,m)) % n;
+        int res = 0;
+        for (int i = 2; i <= n; i++) {
+            res = (res + m) % i;
+        }
+        return res;
     }
-
-
 }
