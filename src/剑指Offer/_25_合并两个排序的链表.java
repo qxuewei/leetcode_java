@@ -2,6 +2,8 @@ package 剑指Offer;
 
 import 链表.ListNode;
 
+import java.util.ArrayList;
+
 /**
  * @author 邱学伟
  * @version V1.0
@@ -28,24 +30,30 @@ public class _25_合并两个排序的链表 {
      */
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode newList = new ListNode(-1);
+        ArrayList<Integer> list = new ArrayList<>();
         while (l1 != null && l2 != null) {
             if (l1.val < l2.val) {
-                newList.next = l1;
+                list.add(l1.val);
                 l1 = l1.next;
             } else {
-                newList.next = l2;
+                list.add(l2.val);
                 l2 = l2.next;
             }
         }
         while (l1 != null) {
-            newList.next = l1;
+            list.add(l1.val);
             l1 = l1.next;
         }
         while (l2 != null) {
-            newList.next = l2;
+            list.add(l2.val);
             l2 = l2.next;
         }
-        return newList.next;
+        ListNode head = new ListNode(-1);
+        ListNode h = head;
+        for (Integer integer : list) {
+            head.next = new ListNode(integer);
+            head = head.next;
+        }
+        return h.next;
     }
 }
