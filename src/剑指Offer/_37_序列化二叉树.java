@@ -30,7 +30,7 @@ public class _37_序列化二叉树 {
     public String serialize(TreeNode root) {
         if (root == null) return "[]";
         StringBuilder builder = new StringBuilder("[");
-        Queue<TreeNode> queue = new LinkedList<>(){
+        Queue<TreeNode> queue = new LinkedList<TreeNode>(){
             {add(root);}
         };
         while (!queue.isEmpty()) {
