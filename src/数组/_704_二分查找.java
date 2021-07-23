@@ -30,6 +30,7 @@ public class _704_二分查找 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
+    // 左开右闭
     public int search(int[] nums, int target) {
         int left = 0, right = nums.length;
         while (left < right) {
