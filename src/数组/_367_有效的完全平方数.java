@@ -27,11 +27,23 @@ public class _367_有效的完全平方数 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
-    // 完全平方根为前n个奇数的和
-//    public boolean isPerfectSquare(int num) {
-//        int n = 1;
-//        while (n)
-//    }
+    public static boolean isPerfectSquare1(int num) {
+        if (num < 2) return true;
+        long left = 2, right = num / 2;
+        while (left <= right) {
+            long middle = left + ((right - left) >> 1);
+            long n = middle * middle;
+            if (n == num) {
+                return true;
+            } else if (n > num) {
+                right = middle - 1;
+            } else {
+                left = middle + 1;
+            }
+        }
+        return false;
+    }
+
 
     public static boolean isPerfectSquare(int num) {
         if (num < 2) return true;
@@ -50,6 +62,6 @@ public class _367_有效的完全平方数 {
     }
 
     public static void main(String[] args) {
-        System.out.println("res = " + isPerfectSquare(808201));
+        System.out.println("res = " + isPerfectSquare1(808201));
     }
 }

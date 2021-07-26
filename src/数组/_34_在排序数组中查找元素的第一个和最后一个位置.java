@@ -37,6 +37,34 @@ public class _34_在排序数组中查找元素的第一个和最后一个位置
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
+    public int[] searchRange1(int[] nums, int target) {
+        int[] res = {-1, -1};
+        res[0] = binarySearch1(nums, target, true);
+        res[1] = binarySearch1(nums, target, false);
+        return res;
+    }
+
+    public int binarySearch1(int[] nums, int target, boolean leftOrRight) {
+        int res = -1;
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int middle = left + ((right - left) >> 1);
+            if (nums[middle] > target) {
+                right = middle - 1;
+            } else if (nums[middle] < target) {
+                left = middle + 1;
+            } else {
+                res = middle;
+                if (leftOrRight) {
+                    right = middle - 1;
+                } else {
+                    left = middle + 1;
+                }
+            }
+        }
+        return res;
+    }
+
     // 1223345
     // 0123456
     public int[] searchRange(int[] nums, int target) {

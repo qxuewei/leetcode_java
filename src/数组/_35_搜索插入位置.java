@@ -43,6 +43,40 @@ public class _35_搜索插入位置 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
+    // 二分 - 左闭右开
+    public static int searchInsert3(int[] nums, int target) {
+        int left = 0, right = nums.length;
+        while (left < right) {
+            int middle = left + ((right - left) >> 1);
+            if (nums[middle] == target) {
+                return middle;
+            } else if (nums[middle] < target) {
+                left = middle + 1;
+            } else {
+                right = middle;
+            }
+        }
+        return right;
+    }
+
+    // 二分 - 左闭右闭
+    public static int searchInsert2(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int middle = left + ((right - left) >> 1);
+            if (nums[middle] == target) {
+                return middle;
+            } else if (nums[middle] < target) {
+                left = left + 1;
+            } else {
+                right = middle - 1;
+            }
+        }
+        return left;
+    }
+
+
     // 暴力法
     public static int searchInsert1(int[] nums, int target) {
         for (int i = 0; i < nums.length; i++) {
@@ -73,6 +107,6 @@ public class _35_搜索插入位置 {
     public static void main(String[] args) {
         int[] nums = {1,3,5,6};
         int target = 4;
-        System.out.println(searchInsert1(nums, target));
+        System.out.println(searchInsert3(nums, target));
     }
 }
