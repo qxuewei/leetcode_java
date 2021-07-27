@@ -47,6 +47,31 @@ public class _26_删除排序数组中的重复项 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
+    public int removeDuplicates2(int[] nums) {
+        if (nums.length < 2) return nums.length;
+        int slow = 0, fast = 1;
+        while (fast < nums.length) {
+            if (nums[slow] != nums[fast]) {
+                slow++;
+                nums[slow] = nums[fast];
+            }
+            fast++;
+        }
+        return slow + 1;
+    }
+
+    public int removeDuplicates1(int[] nums) {
+        if (nums.length < 2) return nums.length;
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[j] != nums[i]) {
+                j++;
+                nums[j] = nums[i];
+            }
+        }
+        return j + 1;
+    }
+
     public int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0)
             return 0;
@@ -62,8 +87,11 @@ public class _26_删除排序数组中的重复项 {
 
     public static void main(String[] args) {
         int[] num = {1,1,2,2,3,4,4,5};
-        int result = new _26_删除排序数组中的重复项().removeDuplicates(num);
+        int result = new _26_删除排序数组中的重复项().removeDuplicates2(num);
         System.out.println(result);
+        for (int i = 0; i < result; i++) {
+            System.out.print(num[i] + " ");
+        }
     }
 
 }

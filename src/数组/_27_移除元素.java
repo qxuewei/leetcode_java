@@ -51,6 +51,19 @@ public class _27_移除元素 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
+
+    public static int removeElement1(int[] nums, int val) {
+        int slow = 0, fast = 0;
+        while (fast < nums.length) {
+            if (nums[fast] != val) {
+                nums[slow] = nums[fast];
+                slow++;
+            }
+            fast++;
+        }
+        return slow;
+    }
+
     // 快慢指针
     public static int removeElement(int[] nums, int val) {
         int slow, fast = 0;
