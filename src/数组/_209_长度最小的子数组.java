@@ -43,9 +43,15 @@ public class _209_长度最小的子数组 {
     //输入：target = 7, nums = [2,3,1,2,4,3]
     //输出：2
     public static int minSubArrayLen(int target, int[] nums) {
-        int begin = 0, end = 0, length = Integer.MAX_VALUE, sum = 0;
-
-        return length;
+        int begin = 0, length = Integer.MAX_VALUE, sum = 0;
+        for (int end = 0; end < nums.length; end++) {
+            sum += nums[end];
+            while (sum >= target) {
+                length = Math.min(length, end - begin + 1);
+                sum -= nums[begin++];
+            }
+        }
+        return length == Integer.MAX_VALUE ? 0 : length;
     }
 
     public static void main(String[] args) {
