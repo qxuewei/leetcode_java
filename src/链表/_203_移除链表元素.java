@@ -59,26 +59,9 @@ public class _203_移除链表元素 {
 		return newNode.next;
 	}
 
-
-	public ListNode removeElements(ListNode head, int val) 
-	{
+	public ListNode removeElements2(ListNode head, int val) {
 		if (head == null) {
-			return head;
-		}
-		ListNode newHeadListNode = new ListNode(-1);
-		newHeadListNode.next = head;
-		ListNode tempListNode = head;
-		while (tempListNode != null) {
-			
-			tempListNode = tempListNode.next;
-		}
-		return newHeadListNode.next;
-	}
-
-	public ListNode removeElements2(ListNode head, int val)
-	{
-		if (head == null) {
-			return head;
+			return null;
 		}
 		head.next = removeElements2(head.next, val);
 		if (head.val == val) {
