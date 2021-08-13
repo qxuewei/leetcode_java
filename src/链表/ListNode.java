@@ -25,10 +25,12 @@ public class ListNode {
 			System.out.println("]");
 			return;
 		}
-		while (head.next != null) {
+		while (head != null) {
 			System.out.print(head.val);
-			System.out.print("_");
 			head = head.next;
+			if (head != null) {
+				System.out.print("_");
+			}
 		}
 		System.out.println("]");
 	}

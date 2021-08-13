@@ -35,9 +35,9 @@ public class _203_移除链表元素 {
 	public static void main(String[] args) {
 		int[] nums = {1,2,6,3,4,5,6};
 		int[] nums1 = {7,7,7,7};
-		ListNode node = ListNode.creatListNode(nums1);
+		ListNode node = ListNode.creatListNode(nums);
 		ListNode.logNode(node);
-		int val = 7;
+		int val = 6;
 		ListNode res = removeElements1(node, val);
 		ListNode.logNode(res);
 	}
