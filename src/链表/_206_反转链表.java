@@ -16,6 +16,37 @@ public class _206_反转链表 {
 	 *
 	 */
 
+	// 递归
+	public ListNode reverseList3(ListNode head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		ListNode newH = reverseList3(head.next);
+		head.next.next = head;
+		head.next = null;
+		return newH;
+	}
+
+
+	// 迭代
+	public ListNode reverseList4(ListNode head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		ListNode newH = null;
+		while (head != null) {
+			ListNode next = head.next;
+			head.next = newH;
+			newH = head;
+			head = next;
+		}
+		return newH;
+	}
+
+
+
+
+
 	public ListNode reverseList(ListNode head)
 	{
 		if (head == null || head.next == null) return head;
