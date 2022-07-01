@@ -30,6 +30,8 @@ package 牛客;
 [1,2,5,5,6]
  */
 
+import java.util.Random;
+
 public class _NC140_排序 {
     /**
      * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
@@ -41,6 +43,45 @@ public class _NC140_排序 {
 //        return chooseSort(arr);
         quickSort(arr, 0, arr.length - 1);
         return arr;
+    }
+
+    // 快排
+    public void quickSort (int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int pivot = pivotIndex(arr, left, right);
+        quickSort(arr, left, pivot - 1);
+        quickSort(arr, pivot + 1, right);
+    }
+    // 随机
+    // [4, 1, 2, 3]
+    // [4, 1, 3, 2]
+    // [4, 1, 3, 2]
+    // [1, 2, 3, 4]
+
+    private int pivotIndex(int[] arr, int left, int right) {
+        int i = left;
+        int randomIndex = new Random().nextInt(right - left + 1) + left;
+        swap(arr, randomIndex, right);
+        for (int j = left; j < right; j++) {
+            if (arr[j] < arr[right]) {
+                // 找到第一个比目标值小的坐标
+                if (i != j) {
+                    swap(arr, i, j);
+                }
+                // 有一个则 i 加 1
+                i += 1;
+            }
+        }
+        swap(arr, i, right);
+        return i;
+    }
+
+    private void swap(int[] arr, int left, int right) {
+        int tmp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = tmp;
     }
 
     // 选择
@@ -57,30 +98,5 @@ public class _NC140_排序 {
         return arr;
     }
 
-    // 快排
-    public void quickSort (int[] arr, int left, int right) {
-       if (left >= right) {
-           return;
-       }
-       int i = left;
-       int j = right;
-       int pivot = arr[i];
-       while (i < j) {
-           while (i < j && arr[j] > pivot) {
-               j -= 1;
-           }
-           if (i < j) {
-               arr[i] = arr[j];
-           }
-           while (i < j && arr[i] < pivot) {
-               i += 1;
-           }
-           if (i < j) {
-               arr[j] = arr[i];
-           }
-       }
-       arr[i] = pivot;
-       quickSort(arr, left, i - 1);
-       quickSort(arr, i + 1, right);
-    }
+
 }
