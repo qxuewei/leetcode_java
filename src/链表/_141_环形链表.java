@@ -94,4 +94,20 @@ public class _141_环形链表 {
 		}
 		return false;
 	}
+
+	public boolean hasCycle3(ListNode head) {
+		if (head == null || head.next == null) {
+			return false;
+		}
+		ListNode fast = head.next;
+		ListNode slow = head;
+		while (fast != null && fast.next != null) {
+			if (fast == slow) {
+				return true;
+			}
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return false;
+	}
 }

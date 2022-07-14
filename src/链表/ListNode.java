@@ -7,6 +7,15 @@ public class ListNode {
 	{
 		val = x;
 	}
+	public ListNode(int x, ListNode next) {
+		val = x;
+		next = next;
+	}
+
+	public ListNode() {
+		val = 0;
+		next = null;
+	}
 
 	public static ListNode creatListNode(int[] nums) {
 		ListNode node = new ListNode(-1);

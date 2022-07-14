@@ -1,5 +1,7 @@
 package 排序;
 
+import java.util.Random;
+
 /**
  * @author 邱学伟
  * @version V1.0
@@ -73,6 +75,95 @@ public class _912_排序数组 {
             }
         }
         return nums;
+    }
+
+    // 冒泡 - 超时
+    public void sortArrayBubble1(int[] nums) {
+        int count = nums.length;
+        for (int i = 0; i < count; i++) {
+            for (int j = 0; j < count - i - 1 ; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    swap(nums, j, j + 1);
+                }
+            }
+        }
+    }
+
+    // 冒泡 - 优化
+    public void sortArrayBubble2(int[] nums) {
+        int count = nums.length;
+        for (int i = 0; i < count; i++) {
+            boolean sorted = true;
+            for (int j = 0; j < count - i - 1 ; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    swap(nums, j, j + 1);
+                    sorted = false;
+                }
+            }
+            if (sorted) {
+                break;
+            }
+        }
+    }
+
+    // 选择
+    public void sortArraySelection(int[] nums) {
+        int count = nums.length;
+        for (int i = 0; i < count; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < count; j++) {
+                if (nums[j] < nums[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            if (minIndex != i) {
+                swap(nums, i, minIndex);
+            }
+        }
+    }
+
+    // 插入
+    public void sortArrayInsert(int[] nums) {
+        int count = nums.length;
+        if (count < 2) return;
+        for (int i = 1; i < count; i++) {
+            int j = i;
+            while (j > 0 && nums[j - 1] > nums[j]) {
+                swap(nums, j - 1, j);
+                j -= 1;
+            }
+        }
+    }
+
+    // 随机快排
+    public void sortArrayQuick1(int[] nums) {
+        int count = nums.length;
+        if (count < 2) return;
+        quick1(nums, 0, count - 1);
+    }
+    private void quick1(int[] nums, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int index = poivtIndex(nums, left, right);
+        quick1(nums, left, index - 1);
+        quick1(nums, index + 1, right);
+    }
+    public int poivtIndex(int[] nums, int left, int right) {
+        int random = new Random().nextInt(right - left + 1) + left;
+        swap(nums, right, random);
+        int key = nums[right];
+        int j = left;
+        for (int i = left; i < right; i++) {
+            if (nums[i] < key) {
+                if (i != j) {
+                    swap(nums, i, j);
+                }
+                j += 1;
+            }
+        }
+        swap(nums, j, right);
+        return j;
     }
 
 
