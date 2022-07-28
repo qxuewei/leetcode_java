@@ -3,8 +3,44 @@ package 牛客;
 
 import 链表.ListNode;
 
+import java.util.Stack;
+
 public class _NC40_链表相加二 {
     public ListNode addInList(ListNode head1, ListNode head2) {
-
+        if (head1 == null) {
+            return head2;
+        } else if (head2 == null) {
+            return head1;
+        }
+        ListNode h1 = head1;
+        ListNode h2 = head2;
+        Stack s1 = new Stack<>();
+        while (h1 != null) {
+            s1.add(h1.val);
+            h1 = h1.next;
+        }
+        Stack<Integer> s2 = new Stack<Integer>();
+        while (h2 != null) {
+            s2.add(h2.val);
+            h2 = h2.next;
+        }
+        int flag = 0;
+        ListNode dummy = new ListNode(-1);
+        while (!s1.isEmpty() || !s2.isEmpty() || flag > 0) {
+            int cur = flag;
+            if (!s1.isEmpty()) {
+                Integer n1 = (Integer) s1.pop();
+                cur += n1;
+            }
+            if (!s2.isEmpty()) {
+                Integer n2 = (Integer) s2.pop();
+                cur += n2;
+            }
+            ListNode node = new ListNode(cur % 10);
+            flag = cur / 10;
+            node.next = dummy.next;
+            dummy.next = node;
+        }
+        return dummy.next;
     }
 }
