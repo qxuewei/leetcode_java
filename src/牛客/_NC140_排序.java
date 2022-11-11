@@ -98,5 +98,49 @@ public class _NC140_排序 {
         return arr;
     }
 
+    private void swapArr(int[] arr, int index1, int index2) {
+        int tmp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = tmp;
+    }
+    // [5,2,3,1,4]
+    // 插入 - 把后者插入前面排序好的合适位置
+    private int[] insert(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (arr[j] < arr[i]) {
+                    swapArr(arr, j, i);
+                }
+            }
+        }
+        return arr;
+    }
+
+    // 冒泡 - 两两比较，大的右移
+    private int[] bublle(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    swapArr(arr, j, j + 1);
+                }
+            }
+        }
+        return arr;
+    }
+
+    // 选择 - 排序好的放左边，没排序的把最小的跟第一个交换
+
+    private int[] choose(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            swapArr(arr, i, minIndex);
+        }
+        return arr;
+    }
 
 }
