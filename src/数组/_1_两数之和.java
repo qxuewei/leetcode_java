@@ -17,6 +17,27 @@ import java.util.HashMap;
  */
 
 public class _1_两数之和 {
+
+	public int[] twoSum20221118(int[] nums, int target) {
+		int[] res = new int[2];
+		if (nums.length < 2) {
+			return res;
+		}
+		HashMap<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			int n = target - nums[i];
+			if (map.containsKey(n)) {
+				res[0] = i;
+				res[1] = map.get(n);
+			} else {
+				map.put(nums[i], i);
+			}
+		}
+		return res;
+	}
+
+
+
 	/// 1. 遍历
 	public int[] twoSum(int[] nums, int target) 
 	{
