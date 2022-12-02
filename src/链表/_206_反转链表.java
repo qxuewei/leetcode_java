@@ -1,7 +1,31 @@
 package 链表;
 
-@SuppressWarnings("unused")
+// https://leetcode.cn/problems/reverse-linked-list/?favorite=2cktkvj
 public class _206_反转链表 {
+	public ListNode reverseList20221123_2(ListNode head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		ListNode res = null;
+		ListNode next = null;
+		while (head != null) {
+			next = head.next;
+			head.next = res;
+			res = head;
+			head = next;
+		}
+		return res;
+	}
+
+	public ListNode reverseList20221123(ListNode head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		ListNode res = reverseList20221123(head.next);
+		head.next.next = head;
+		head.next = null;
+		return res;
+	}
 
 	/**
 	 *

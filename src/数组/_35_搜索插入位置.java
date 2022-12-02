@@ -43,6 +43,22 @@ public class _35_搜索插入位置 {
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
 
+    public int searchInsert20221127(int[] nums, int target) {
+        int left = 0, right = nums.length - 1, mid = 0;
+        while (left <= right) {
+            mid = (left + right) >> 1;
+            int midValue = nums[mid];
+            if (midValue < target) {
+                left = mid + 1;
+            } else if (midValue > target) {
+                right = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+        return left;
+    }
+
     // 二分 - 左闭右开
     public static int searchInsert3(int[] nums, int target) {
         int left = 0, right = nums.length;
