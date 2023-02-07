@@ -12,6 +12,52 @@ package 链表;
 
 public class _21_合并两个有序链表 {
 
+	public ListNode mergeTwoLists20221202_1(ListNode l1, ListNode l2) {
+		if (l1 == null) {
+			return l2;
+		} else if (l2 == null) {
+			return l1;
+		} else if (l1.val < l2.val) {
+			l1.next = mergeTwoLists20221202_1(l1.next, l2);
+			return l1;
+		} else {
+			l2.next = mergeTwoLists20221202_1(l1, l2.next);
+			return l2;
+		}
+	}
+
+	public ListNode mergeTwoLists20221202(ListNode l1, ListNode l2) {
+		if (l1 == null) {
+			return l2;
+		} else if (l2 == null) {
+			return l1;
+		}
+		ListNode dummyRes = new ListNode(-1);
+		ListNode dummy = dummyRes;
+		while (l1 != null || l2 != null) {
+			if (l1 != null && l2 != null) {
+				if (l1.val < l2.val) {
+					dummy.next = new ListNode(l1.val);
+					l1 = l1.next;
+				} else {
+					dummy.next = new ListNode(l2.val);
+					l2 = l2.next;
+				}
+			} else if (l1 != null) {
+				dummy.next = new ListNode(l1.val);
+				l1 = l1.next;
+			} else {
+				dummy.next = new ListNode(l2.val);
+				l2 = l2.next;
+			}
+			dummy = dummy.next;
+		}
+		return dummyRes.next;
+	}
+
+
+
+
 	/// 递归
 	public ListNode mergeTwoLists(ListNode l1, ListNode l2) 
 	{

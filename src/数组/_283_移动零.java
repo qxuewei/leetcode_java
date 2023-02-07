@@ -1,4 +1,5 @@
 package 数组;
+// https://leetcode.cn/problems/move-zeroes/?favorite=2cktkvj
 
 public class _283_移动零 {
     /**
@@ -17,6 +18,23 @@ public class _283_移动零 {
      * 链接：https://leetcode-cn.com/problems/move-zeroes
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
+
+
+    public void moveZeroes202211205(int[] nums) {
+        if (nums.length == 0) {
+            return;
+        }
+        int left = 0;
+        for (int right = 0; right < nums.length; right++) {
+            if (nums[right] != 0) {
+                nums[left++] = nums[right];
+            }
+        }
+        for (int i = left; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+    }
+
 
     public static void moveZeroes(int[] nums) {
         int left = 0;

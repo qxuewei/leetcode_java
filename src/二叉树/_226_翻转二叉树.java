@@ -1,6 +1,5 @@
 package 二叉树;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,6 +10,33 @@ import java.util.Queue;
  * @date 2020/9/18 下午12:12
  */
 public class _226_翻转二叉树 {
+
+    public TreeNode invertTree20230116(TreeNode root) {
+        if (root == null) {
+            return root;
+        }
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            // 翻转
+            invertOneRoot(node);
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
+        return root;
+    }
+
+    private void invertOneRoot(TreeNode root) {
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+    }
+
     /**
      * 翻转一棵二叉树。
      *

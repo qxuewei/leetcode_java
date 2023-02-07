@@ -1,8 +1,6 @@
 package 二叉树;
 
-import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * @author 邱学伟
@@ -11,6 +9,42 @@ import java.util.Queue;
  * @date 2020/9/28 下午4:48
  */
 public class _104_二叉树的最大深度 {
+
+    public int maxDepth20221228(TreeNode root) {
+        int res = 0;
+        if (root == null) {
+            return res;
+        } else if (root.left == null && root.right == null) {
+            return 1;
+        }
+        int maxLeft = maxDepth20221228(root.left);
+        int maxRight = maxDepth20221228(root.right);
+        return Math.max(maxLeft, maxRight) + 1;
+    }
+
+    public int maxDepth20221228_2(TreeNode root) {
+        int res = 0;
+        if (root == null) {
+            return res;
+        }
+        LinkedList<TreeNode> list = new LinkedList<TreeNode>();
+        list.push(root);
+        while (!list.isEmpty()) {
+            int size = list.size();
+            res += 1;
+            for (int i = 0; i < size; i++) {
+                TreeNode node = list.poll();
+                if (node.left != null) {
+                    list.push(node.left);
+                }
+                if (node.right != null) {
+                    list.push(node.right);
+                }
+            }
+        }
+        return res;
+    }
+
 
     /**
      * 给定一个二叉树，找出其最大深度。

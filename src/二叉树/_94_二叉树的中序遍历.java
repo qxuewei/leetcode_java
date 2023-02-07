@@ -9,6 +9,40 @@ import java.util.*;
  * @date 2020/9/22 下午4:35
  */
 public class _94_二叉树的中序遍历 {
+
+    // 迭代
+    public List<Integer> inorderTraversal20230106_2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            TreeNode node = stack.pop();
+            res.add(node.val);
+            root = node.right;
+        }
+        return res;
+    }
+
+    public List<Integer> inorderTraversal20230106(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        _inorderTraversal20230106(root, res);
+        return res;
+    }
+    private void _inorderTraversal20230106(TreeNode root, List<Integer> res) {
+        if (root == null) {
+            return;
+        }
+        _inorderTraversal20230106(root.left, res);
+        res.add(root.val);
+        _inorderTraversal20230106(root.right, res);
+    }
+
     /**
      * 给定一个二叉树，返回它的中序 遍历。
      *
